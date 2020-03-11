@@ -10,60 +10,54 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
 @ControllerAdvice
 public class CustomHandler extends ResponseEntityExceptionHandler {
 
+    public static class GenderNotFound extends RuntimeException {
+        String var;
+        public GenderNotFound(Set<String> a) {
+            super("Enter a valid gender of type " + a.toString());
+            var = "Enter a valid gender of type "+ a.toString();
+        }
 
-    @ExceptionHandler(GenderNotFound.class)
-    public ResponseEntity<CustomErrorResponse> customHandleNotFound(Exception ex) {
+        @Override
+        public String toString() {
+            return var;
+        }
+    }
+
+    public static class Error extends RuntimeException {
+        String var;
+        public Error(Set<String> a) {
+            super("Enter a valid input of type "+a.toString());
+            var = "Enter a valid input of type "+ a.toString();
+        }
+
+        @Override
+        public String toString() {
+            return var;
+        }
+    }
+
+
+
+
+    @ExceptionHandler(Error.class)
+    public ResponseEntity<CustomErrorResponse> customHandleNotFound3(Exception ex) {
 
         CustomErrorResponse errors = new CustomErrorResponse();
         errors.setTimestamp(LocalDateTime.now());
         errors.setError(ex.getMessage());
         errors.setStatus(HttpStatus.NOT_FOUND.value());
 
-        return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
-
-    }
-
-    @ExceptionHandler(DesignationNotFound.class)
-    public ResponseEntity<CustomErrorResponse> customHandleNotFound1(Exception ex) {
-
-        CustomErrorResponse errors = new CustomErrorResponse();
-        errors.setTimestamp(LocalDateTime.now());
-        errors.setError(ex.getMessage());
-        errors.setStatus(HttpStatus.NOT_FOUND.value());
-
 
         return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
 
-    }
-
-    @ExceptionHandler(EmploymentTypeNotFound.class)
-    public ResponseEntity<CustomErrorResponse> customHandleNotFound2(Exception ex) {
-
-        CustomErrorResponse errors = new CustomErrorResponse();
-        errors.setTimestamp(LocalDateTime.now());
-        errors.setError(ex.getMessage());
-        errors.setStatus(HttpStatus.NOT_FOUND.value());
-
-        return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
-
-    }
-
-    @ExceptionHandler(UnsupportedException.class)
-    public void springUnSupportedFieldPatch(HttpServletResponse response) throws IOException {
-        response.sendError(HttpStatus.METHOD_NOT_ALLOWED.value());
     }
 
 

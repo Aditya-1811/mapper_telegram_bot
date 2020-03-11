@@ -15,4 +15,5 @@ public class Main {
     public String location;
     public String bank;
     public String gender;
+
 }
