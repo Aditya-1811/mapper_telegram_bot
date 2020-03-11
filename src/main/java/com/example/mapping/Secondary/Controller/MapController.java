@@ -57,18 +57,5 @@ public class MapController {
         List<Main> b = repo1.findAll();
         MapFunction d = new MapFunction();
         return a.get(1).getApi_id();
-        //return a.get(0).getMapper().get("gender").containsKey(b.get())
-
-        //return d.update(a, b,a.get(1).getApi_id());
     }
-
-
-    /*@PutMapping(value = "/update/{id}")
-    public Set<String> modifyById(@PathVariable( "id") MapClass obj, @Valid @RequestBody Main obj1) {
-        List<MapClass> a = repo.findAll();
-        List<Main> b = repo1.findAll();
-
-
-    }*/
-
 }

@@ -18,19 +18,6 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class CustomHandler extends ResponseEntityExceptionHandler {
 
-    public static class GenderNotFound extends RuntimeException {
-        String var;
-        public GenderNotFound(Set<String> a) {
-            super("Enter a valid gender of type " + a.toString());
-            var = "Enter a valid gender of type "+ a.toString();
-        }
-
-        @Override
-        public String toString() {
-            return var;
-        }
-    }
-
     public static class Error extends RuntimeException {
         String var;
         public Error(Set<String> a) {
@@ -43,8 +30,6 @@ public class CustomHandler extends ResponseEntityExceptionHandler {
             return var;
         }
     }
-
-
 
 
     @ExceptionHandler(Error.class)

@@ -21,7 +21,7 @@ public class MapFunction {
             else {
                 Bot.sendToTelegram("Loan request failed for id :"+a.get(c).id+" with error: "+ new CustomHandler.Error(a.get(c).getMapper().get("gender").keySet()).toString());
                 //Bot.sendToTelegram("Loan request failed for id :"+a.get(c).id+" with error: "+ new CustomHandler.GenderNotFound(a.get(c).getMapper().get("gender").keySet()).toString());
-                throw new CustomHandler.GenderNotFound(a.get(c).getMapper().get("gender").keySet());
+                throw new CustomHandler.Error(a.get(c).getMapper().get("gender").keySet());
             }
 
             if (a.get(c).getMapper().get("designation").containsKey(main.getDesignation()))
@@ -32,7 +32,7 @@ public class MapFunction {
 
             else {
                 Bot.sendToTelegram("Loan request failed for id :"+a.get(c).id+" with error: "+new CustomHandler.Error(a.get(c).getMapper().get("designation").keySet()).toString());
-                throw new CustomHandler.DesignationNotFound(a.get(c).getMapper().get("designation").keySet());
+                throw new CustomHandler.Error(a.get(c).getMapper().get("designation").keySet());
             }
 
 
@@ -44,7 +44,7 @@ public class MapFunction {
 
             else {
                 Bot.sendToTelegram("Loan request failed for id :"+a.get(c).id+" with error: "+new CustomHandler.Error(a.get(c).getMapper().get("employment").keySet()).toString());
-                throw new CustomHandler.EmploymentTypeNotFound(a.get(c).getMapper().get("employment").keySet());
+                throw new CustomHandler.Error(a.get(c).getMapper().get("employment").keySet());
             }
         }
 
