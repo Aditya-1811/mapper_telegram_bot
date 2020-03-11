@@ -10,10 +10,8 @@ public class Bot {
     public static void sendToTelegram(String text) {
         String urlString = "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s";
 
-        //Add Telegram token (given Token is fake)
         String apiToken = "1026245897:AAHX-B2O_NcjapHhvZrUK6Imo6RKHggiK48";
 
-        //Add chatId (given chatId is fake)
         String chatId = "155193201";
 
         urlString = String.format(urlString, apiToken, chatId, text);
